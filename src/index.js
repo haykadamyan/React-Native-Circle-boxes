@@ -34,7 +34,7 @@ export default class ReactNativeCircleBoxes extends Component {
     render() {
         return (
             <View>
-                <ScrollView horizontal={true} contentContainerStyle={{flex: 1, flexDirection: 'column', flexWrap:'wrap',  backgroundColor: 'black', alignItems:'flex-start'}}>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{height: 500, flexDirection: 'column', flexWrap:'wrap', alignItems:'flex-start'}}>
                     {Config.bubbles.map((bubble, index) => {
                         return generateBubble(bubble, index)
                     })
