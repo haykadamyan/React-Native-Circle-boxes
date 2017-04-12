@@ -5,9 +5,6 @@ export default StyleSheet.create({
         padding: 30
     },
     bubble: {
-
-    },
-    scrollItem: {
-        padding: 50
+        borderRadius: 1000,
     }
 })

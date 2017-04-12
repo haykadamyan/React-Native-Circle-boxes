@@ -9,65 +9,36 @@ import {
     AppRegistry,
     Text,
     View,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
-import Styles from './styles/index'
+
+import Styles from './styles';
 
 function generateBubble({radius, style}) {
     return (
-        <View>
-            <Text>text</Text>
-        </View>
+        <TouchableOpacity style={[{width: radius, height: radius}, Styles.bubble, style]}>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <Text>Text</Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 
 export default class ReactNativeCircleBoxes extends Component {
     render() {
         return (
-            <View style={Styles.container}>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View style={Styles.scrollItem}>
-                        <Text>
-                            Aasdkjh
-                        </Text>
-                    </View>
-                    <View style={Styles.scrollItem}>
-                        <Text>
-                            Aqweqwe
-                        </Text>
-                    </View>
-                    <View style={Styles.scrollItem}>
-                        <Text>
-                            A
-                        </Text>
-                    </View>
-                    <View style={Styles.scrollItem}>
-                        <Text>
-                            A
-                        </Text>
-                    </View>
-                    <View style={Styles.scrollItem}>
-                        <Text>
-                            A
-                        </Text>
-                    </View>
-                    <View style={Styles.scrollItem}>
-                        <Text>
-                            A
-                        </Text>
-                    </View>
-                    <View style={Styles.scrollItem}>
-                        <Text>
-                            A
-                        </Text>
-                    </View>
-                    <View style={Styles.scrollItem}>
-                        <Text>
-                            A
-                        </Text>
-                    </View>
+            <View>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{flex: 1, flexDirection: 'column', flexWrap:'wrap',  backgroundColor: 'black', alignItems:'flex-start'}}>
+                    {generateBubble({radius: 150, style: {backgroundColor: 'purple'} })}
+                    {generateBubble({radius: 150, style: {backgroundColor: 'blue'} })}
+                    {generateBubble({radius: 150, style: {backgroundColor: 'pink'} })}
+                    {generateBubble({radius: 150, style: {backgroundColor: 'red'} })}
+                    {generateBubble({radius: 150, style: {backgroundColor: 'red'} })}
+                    {generateBubble({radius: 150, style: {backgroundColor: 'red'} })}
+                    {generateBubble({radius: 150, style: {backgroundColor: 'red'} })}
+                    {generateBubble({radius: 150, style: {backgroundColor: 'red'} })}
                 </ScrollView>
-                
             </View>
         );
     }
