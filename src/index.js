@@ -8,8 +8,10 @@ import React, { Component } from 'react';
 import {
     AppRegistry,
     Text,
-    View
+    View,
+    ScrollView
 } from 'react-native';
+import Styles from './styles/index'
 
 function generateBubble({radius, style}) {
     return (
@@ -22,10 +24,50 @@ function generateBubble({radius, style}) {
 export default class ReactNativeCircleBoxes extends Component {
     render() {
         return (
-            <View>
-                <Text>
-                    Welcome to React Native!
-                </Text>
+            <View style={Styles.container}>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    <View style={Styles.scrollItem}>
+                        <Text>
+                            A
+                        </Text>
+                    </View>
+                    <View style={Styles.scrollItem}>
+                        <Text>
+                            A
+                        </Text>
+                    </View>
+                    <View style={Styles.scrollItem}>
+                        <Text>
+                            A
+                        </Text>
+                    </View>
+                    <View style={Styles.scrollItem}>
+                        <Text>
+                            A
+                        </Text>
+                    </View>
+                    <View style={Styles.scrollItem}>
+                        <Text>
+                            A
+                        </Text>
+                    </View>
+                    <View style={Styles.scrollItem}>
+                        <Text>
+                            A
+                        </Text>
+                    </View>
+                    <View style={Styles.scrollItem}>
+                        <Text>
+                            A
+                        </Text>
+                    </View>
+                    <View style={Styles.scrollItem}>
+                        <Text>
+                            A
+                        </Text>
+                    </View>
+                </ScrollView>
+                
             </View>
         );
     }
