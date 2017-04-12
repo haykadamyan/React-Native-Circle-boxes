@@ -6,5 +6,10 @@ export default StyleSheet.create({
     },
     bubble: {
         borderRadius: 1000,
+    },
+    flexCenter: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })
