@@ -28,12 +28,12 @@ export default class ReactNativeCircleBoxes extends Component {
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <View style={Styles.scrollItem}>
                         <Text>
-                            A
+                            Aasdkjh
                         </Text>
                     </View>
                     <View style={Styles.scrollItem}>
                         <Text>
-                            A
+                            Aqweqwe
                         </Text>
                     </View>
                     <View style={Styles.scrollItem}>
