@@ -4,7 +4,7 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Animated
+    Animated,
 } from 'react-native';
 
 import Styles from '../../styles';
@@ -18,31 +18,59 @@ export default class Bubble extends Component {
 
     state = {
         bubble: this.props.bubble,
-        scaleAnim: new Animated.Value(1)
+        scaleAnim: new Animated.Value(1),
+        deviceWidth: this.props.deviceWidth,
     }
 
-    componentDidMount(){
-        Animated.timing(                            // Animate over time
-            this.state.scaleAnim,                      // The animated value to drive
-            {
-                toValue: 1.1,                             // Animate to opacity: 1, or fully opaque
-            }
-        ).start(()=>{
+    animationIsInProgress = false;
+
+    doAnimation(){
+        if(!this.animationIsInProgress){
+            const duration =  Helpers.randomBetween(300, 800);
             
-            Animated.timing(
-                this.state.scaleAnim,
+            this.animationIsInProgress = true
+
+            Animated.timing(                            
+                this.state.scaleAnim,                    
                 {
-                    toValue: 1
+                    toValue: 1.1,
+                    duration: duration                      
                 }
-            ).start()
-            
-        });   
+            ).start(()=>{
+                Animated.timing(
+                    this.state.scaleAnim,
+                    {
+                        toValue: 1,
+                        duration: duration
+                    }
+                ).start(()=>{
+                    this.animationIsInProgress = false
+                });
+            });             
+        }
+        return;
+    }
+
+    handleScroll(data){
+        this.setState({
+            elementX: data.x,
+            elementWidth: data.width
+        })
+    }
+
+    checkVisibility() {
+        let ox = this.state.elementX;
+        let width = this.state.elementWidth;
+
+        if(((ox+width-this.props.scrollLeft)<=this.state.deviceWidth) && ((ox+width-this.props.scrollLeft>width))){
+            this.doAnimation();
+        }
     }
 
     generateBubble({radius, style, textStyle, onPress, offsetLeft, offsetTop}) {
     return (
-        <Animated.View style={{paddingTop: offsetTop || Helpers.randomBetween(5, 60), paddingLeft: offsetLeft || Helpers.randomBetween(5, 60)}}>
-            <TouchableOpacity style={[{width: radius, height: radius, transform: [{scale: this.state.scaleAnim}]}, Styles.bubble, style]} onPress={typeof onPress == 'function'? onPress: (() => null)}>
+        <Animated.View onLayout={(event) => {this.handleScroll(event.nativeEvent.layout)}} style={{paddingTop: offsetTop || Helpers.randomBetween(5, 60), paddingLeft: offsetLeft || Helpers.randomBetween(5, 60), transform: [{scale: this.state.scaleAnim}]}}>
+            <TouchableOpacity style={[{width: radius, height: radius}, Styles.bubble, style]} onPress={typeof onPress == 'function'? onPress: (() => null)}>
                 <View style={Styles.flexCenter}>
                     <Text style={textStyle}>Text</Text>
                 </View>
@@ -52,7 +80,8 @@ export default class Bubble extends Component {
 }
 
 
-    render(){        
+    render(){   
+        this.checkVisibility();
         return(
             this.generateBubble(this.state.bubble)
         );

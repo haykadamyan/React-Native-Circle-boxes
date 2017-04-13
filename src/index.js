@@ -10,7 +10,8 @@ import {
     Text,
     View,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions
 } from 'react-native';
 
 import Bubble from './components/bubble'
@@ -21,15 +22,30 @@ import * as Helpers from './helpers';
 import Config from './config';
 
 export default class ReactNativeCircleBoxes extends Component {
+    
+    state = {
+        isScrolling: false
+    }
+
+    handleScroll(scrollFinished, event){
+        this.setState({
+            isScrolling: scrollFinished,
+            scrollLeft: event.nativeEvent.contentOffset.x
+        })
+    }
+        
     render() {
         return (
             <View>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{height: 500, flexDirection: 'column', flexWrap:'wrap', alignItems:'flex-start'}}>
+                <ScrollView onScroll={this.handleScroll.bind(this, true)} onScrollEndDrag={this.handleScroll.bind(this,false)} horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{height: 500, flexDirection: 'column', flexWrap:'wrap', alignItems:'flex-start'}}>
                     {
                         Config.bubbles.map((bubble, index) => {
                             return <Bubble
                                 bubble={bubble}
                                 key={index}
+                                deviceWidth={Dimensions.get("window").width}
+                                isScrolling={this.state.isScrolling}
+                                scrollLeft={this.state.scrollLeft}
                             />
                         })
                     }
