@@ -37,7 +37,7 @@ export default class ReactNativeCircleBoxes extends Component {
     render() {
         return (
             <View>
-                <ScrollView onScroll={this.handleScroll.bind(this, true)} onScrollEndDrag={this.handleScroll.bind(this,false)} horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{height: 500, flexDirection: 'column', flexWrap:'wrap', alignItems:'flex-start'}}>
+                <ScrollView onScroll={this.handleScroll.bind(this, true)} onScrollEndDrag={this.handleScroll.bind(this,false)} horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{height: 500, flexDirection: 'column', flexWrap:'wrap'}}>
                     {
                         Config.bubbles.map((bubble, index) => {
                             return <Bubble

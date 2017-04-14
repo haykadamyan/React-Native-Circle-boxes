@@ -1,38 +1,38 @@
+import * as Helpers from '../helpers'
+
 export default {
-   bubbles: [{
-       radius: 150,
-       offsetLeft: 10,
-       offsetTop: 20,
-       style: {
-           backgroundColor: 'purple'
-       }
-   },{
-       radius: 200,
-       offsetLeft: 10,
-       offsetTop: 20,
-       style: {
-           backgroundColor: 'pink'
-       }
-   },{
-       radius: 200,
-       offsetLeft: 10,
-       offsetTop: 20,
-       style: {
-           backgroundColor: 'pink'
-       }
-   },{
-       radius: 200,
-       offsetLeft: 10,
-       offsetTop: 20,
-       style: {
-           backgroundColor: 'pink'
-       }
-   },{
-       radius: 100,
-       offsetLeft: 10,
-       offsetTop: 20,
-       style: {
-           backgroundColor: 'pink'
-       }
-   }]
+   bubbles: [
+        {
+            radius: 150,
+            style: {
+                backgroundColor: 'purple'
+            }
+            //    offsetLeft: 10,
+            //    offsetTop: 20,
+        },
+        {
+            radius: 80,
+            style: {
+                backgroundColor: "lightblue"
+            }
+        },
+        {
+            radius: 80,
+            style: {
+                backgroundColor: "lightblue"
+            }
+        },
+        {
+            radius: 80,
+            style: {
+                backgroundColor: "lightblue"
+            }
+        },
+        {
+            radius: 80,
+            style: {
+                backgroundColor: "lightblue"
+            }
+        }
+   ]
 }

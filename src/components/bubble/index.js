@@ -20,13 +20,15 @@ export default class Bubble extends Component {
         bubble: this.props.bubble,
         scaleAnim: new Animated.Value(1),
         deviceWidth: this.props.deviceWidth,
+        offsetTop: 20,
+        offsetLeft: 20
     }
 
     animationIsInProgress = false;
 
     doAnimation(){
         if(!this.animationIsInProgress){
-            const duration =  Helpers.randomBetween(300, 800);
+            const duration =  Helpers.Config.randomBetween(300, 800);
             
             this.animationIsInProgress = true
 
@@ -69,7 +71,7 @@ export default class Bubble extends Component {
 
     generateBubble({radius, style, textStyle, onPress, offsetLeft, offsetTop}) {
     return (
-        <Animated.View onLayout={(event) => {this.handleScroll(event.nativeEvent.layout)}} style={{paddingTop: offsetTop || Helpers.randomBetween(5, 60), paddingLeft: offsetLeft || Helpers.randomBetween(5, 60), transform: [{scale: this.state.scaleAnim}]}}>
+        <Animated.View onLayout={(event) => {this.handleScroll(event.nativeEvent.layout)}} style={{paddingTop: offsetTop || this.state.offsetTop, paddingLeft: offsetLeft || this.state.offsetLeft, transform: [{scale: this.state.scaleAnim}]}}>
             <TouchableOpacity style={[{width: radius, height: radius}, Styles.bubble, style]} onPress={typeof onPress == 'function'? onPress: (() => null)}>
                 <View style={Styles.flexCenter}>
                     <Text style={textStyle}>Text</Text>
