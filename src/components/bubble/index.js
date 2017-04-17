@@ -71,19 +71,31 @@ export default class Bubble extends Component {
 
     generateBubble({radius, style, textStyle, onPress, offsetLeft, offsetTop}) {
     return (
-        <Animated.View onLayout={(event) => {this.handleScroll(event.nativeEvent.layout)}} style={{paddingTop: offsetTop || this.state.offsetTop, paddingLeft: offsetLeft || this.state.offsetLeft, transform: [{scale: this.state.scaleAnim}]}}>
-            <TouchableOpacity style={[{width: radius, height: radius}, Styles.bubble, style]} onPress={typeof onPress == 'function'? onPress: (() => null)}>
-                <View style={Styles.flexCenter}>
-                    <Text style={textStyle}>Text</Text>
-                </View>
-            </TouchableOpacity>
-        </Animated.View>
+        <View style={{flexDirection: 'column'}}>
+            <View style={{flexDirection: 'row', flex: 1}}>
+                <Animated.View onLayout={(event) => {this.handleScroll(event.nativeEvent.layout)}} style={{transform: [{scale: this.state.scaleAnim}], flexDirection: 'row'}}>
+                    <TouchableOpacity style={[{width: this.state.bubble.children[0].radius, height: this.state.bubble.children[0].radius}, Styles.bubble, this.state.bubble.children[0], style]} onPress={typeof onPress == 'function'? onPress: (() => null)}>
+                        <View style={Styles.flexCenter}>
+                            <Text style={textStyle}>Text</Text>
+                        </View>
+                    </TouchableOpacity>
+                </Animated.View>
+            </View>
+            <Animated.View onLayout={(event) => {this.handleScroll(event.nativeEvent.layout)}} style={{paddingTop: offsetTop || this.state.offsetTop, paddingLeft: offsetLeft || this.state.offsetLeft, transform: [{scale: this.state.scaleAnim}], flexDirection: 'row'}}>
+                <TouchableOpacity style={[{width: radius, height: radius}, Styles.bubble, style]} onPress={typeof onPress == 'function'? onPress: (() => null)}>
+                    <View style={Styles.flexCenter}>
+                        <Text style={textStyle}>Text</Text>
+                    </View>
+                </TouchableOpacity>
+            </Animated.View>
+        </View>
     )
 }
 
 
     render(){   
         this.checkVisibility();
+        console.log(this.state);
         return(
             this.generateBubble(this.state.bubble)
         );
