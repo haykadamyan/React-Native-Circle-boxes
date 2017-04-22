@@ -7,6 +7,7 @@ import {
     Animated,
 } from 'react-native';
 
+
 import Styles from '../../styles';
 
 import * as Helpers from '../../helpers';
